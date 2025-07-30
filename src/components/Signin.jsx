@@ -18,7 +18,7 @@ const Signin = ({toggleForm}) => {
     // console.log(form.name, form.password)
 
     try {
-      const res = await axios.post("http://localhost:4000/user/register", form)
+      const res = await axios.post("https://hor-backend.onrender.com/user/register", form)
       alert("signin successful!")
 
       setName("")

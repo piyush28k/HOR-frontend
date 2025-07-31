@@ -50,7 +50,7 @@ useEffect(() => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put("https://hor-backend.onrender.com/profile/updateprofile", { userId: profile?.userId, ...formData }, { withCredentials: true })
+    axios.put(`${import.meta.env.VITE_API_URL}/profile/updateprofile`, { userId: profile?.userId, ...formData }, { withCredentials: true })
       .then((res) => alert("Profile Updated Successfully"))
       .catch((err) => console.log(err));
   };

@@ -18,7 +18,7 @@ const Signin = ({toggleForm}) => {
     // console.log(form.name, form.password)
 
     try {
-      const res = await axios.post("https://hor-backend.onrender.com/user/register", form)
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/user/register`, form)
       alert("signin successful!")
 
       setName("")

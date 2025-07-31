@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     const fetchProfile = async () => {
       try {
         if (user) {
-          const res = await axios.post("https://hor-backend.onrender.com/profile/getProfile", {
+          const res = await axios.post(`${import.meta.env.VITE_API_URL}/profile/getProfile`, {
             userId: user,
           });
 

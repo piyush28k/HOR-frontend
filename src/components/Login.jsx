@@ -18,7 +18,7 @@ const Login = ({toggleForm}) => {
     // console.log(form.name, form.password)
 
     try {
-      const res = await axios.post("https://hor-backend.onrender.com/user/login", form)
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/user/login`, form)
       alert("Login successful!");
 
       setName("")
@@ -81,7 +81,7 @@ const Login = ({toggleForm}) => {
       <h3 className="text-center my-2">OR</h3>
        <GoogleLogin
          onSuccess={async (credentialResponse) => {
-          const res = await axios.post("https://hor-backend.onrender.com/user/googleLogin", { token: credentialResponse.credential }, { withCredentials: true });
+          const res = await axios.post(`${import.meta.env.VITE_API_URL}/user/googleLogin`, { token: credentialResponse.credential }, { withCredentials: true });
           localStorage.setItem("user", JSON.stringify(res.data._id));
           window.location.reload();
         }}

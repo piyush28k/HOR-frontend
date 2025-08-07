@@ -142,7 +142,7 @@ const Navigation = () => {
           </NavLink>
           <NavLink
             to="Blog"
-            onClick={toggleMenu}
+            onClick={isOpen ? toggleMenu : undefined}
             className={({ isActive }) =>
               `block py-2 pr-4 pl-3 ${
                 isActive ? "text-blue-600 text-lg font-semibold" : ""

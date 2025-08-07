@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import ImageUploader from './ImageUpload';
 
 export const Blog = () => {
     const [file, setFile] = useState(null);
@@ -12,11 +13,7 @@ export const Blog = () => {
     <>
 
     <h1>Blog</h1>
-     <div className="App">
-            <h2>Add Image:</h2>
-            <input type="file" onChange={handleChange} />
-            {file && <img src={file} alt="Uploaded preview" />}
-        </div>
+     <ImageUploader/>
     </>
   )
 }

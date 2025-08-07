@@ -5,95 +5,19 @@ import { useAuth } from "../context/AuthProvider";
 import EditProfile from "./EditProfile.jsx";
 
 const ProfilePage = () => {
-  // const profile = {
-  //   name: "Alex Carter",
-  //   photo: "https://i.pravatar.cc/150?img=68",
-  //   email: "alex@fiverrpro.com",
-  //   location: "New York, USA",
-  //   title:
-  //     "I an full Stack Developer, an in have experience of 7+ years in web development.",
-  //   bio: "I'm a top-rated developer with 7+ years of experience in full-stack web development, delivering high-quality code for global brands. I specialize in React, Node.js, and MongoDB, and I'm passionate about creating efficient and scalable web applications. My goal is to help businesses succeed online by providing innovative solutions tailored to their needs. i am very good at my work and i am very punctual. I'm a top-rated developer with 7+ years of experience in full-stack web development, delivering high-quality code for global brands. I specialize in React, Node.js, and MongoDB, and I'm passionate about creating efficient and scalable web applications. My goal is to help businesses succeed online by providing innovative solutions tailored to their needs. ",
-  //   skills: ["React", "Node.js", "MongoDB", "Next.js", "Tailwind CSS", "Figma"],
-  //   languages: ["English", "Spanish"],
-  //   education: [
-  //     {
-  //       degree: "B.Sc. in Computer Science",
-  //       institution: "MIT",
-  //       years: "2012 - 2016",
-  //     },
-  //     {
-  //       degree: "High School Diploma",
-  //       institution: "Springfield High",
-  //       years: "2008 - 2012",
-  //     },
-  //   ],
-  //   // education: "B.Sc. in Computer Science, MIT",
-  //   certifications: ["AWS Certified Developer", "MongoDB Certified"],
-  //   feedback: [
-  //     {
-  //       name: "John Doe",
-  //       photo: "https://i.pravatar.cc/150?img=68",
-  //       comment:
-  //         "Alex delivered an outstanding project on time. Highly recommend!Alex delivered an outstanding project on time. Highly recommend!Alex delivered an outstanding project on time. Highly recommend!Alex delivered an outstanding project on time. Highly recommend!Alex delivered an outstanding project on time. Highly recommend!Alex delivered an outstanding project on time. Highly recommend!Alex delivered an outstanding project on time. Highly recommend!Alex delivered an outstanding project on time. Highly recommend!Alex delivered an outstanding project on time. Highly recommend!",
-  //       date: "2023-10-01",
-  //     },
-  //     {
-  //       name: "Jane Smith",
-  //       photo: "https://i.pravatar.cc/150?img=68",
-  //       comment: "Great work, very professional and responsive.",
-  //       date: "2023-09-15",
-  //     },
-  //     {
-  //       name: "Emily Johnson",
-  //       photo: "https://i.pravatar.cc/150?img=68",
-  //       comment:
-  //         "Exceptional quality and attention to detail. Will hire again!",
-  //       date: "2023-08-20",
-  //     },
-
-  //   ],
-  //   giggs: [
-  //     {
-  //       title: "Full Stack Web Development",
-  //       img: "https://imgs.search.brave.com/WcMEbCHZ8NEP359py5mQSF4LwXnkIktNavpl4TbVw0Y/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tYXJr/ZXRwbGFjZS5jYW52/YS5jb20vRUFHaDlT/bjRxajgvMS8wLzE2/MDB3L2NhbnZhLXJl/ZC1hbmQteWVsbG93/LWJvbGQtaG93LXRv/LXRoaW5rLWNyZWF0/aXZlbHkteW91dHVi/ZS10aHVtYm5haWwt/TzI4OG9XdVNnUHcu/anBn",
-  //       description:
-  //         "I will build a complete web application using React and Node.js.",
-  //       price: "$500",
-  //       deliveryTime: "7 days",
-  //     },
-  //     {
-  //       title: "E-commerce Website Development",
-  //       img: "https://imgs.search.brave.com/S95_24_O27Bgfec30FiRb_T9xgKXQzOuXCWA37xIDVo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS12ZWN0b3Iv/bW9kZXJuLXlvdXR1/YmUtdGh1bWJuYWls/LXdpdGgtY29taWMt/YXJ0LWJhY2tncm91/bmRfMTM2MS0yNzM4/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDA",
-  //       description:
-  //         "I will create a fully functional e-commerce website with payment integration.",
-  //       price: "$800",
-  //       deliveryTime: "10 days",
-  //     },
-  //     {
-  //       title: "Responsive Website Design",
-  //       img: "https://imgs.search.brave.com/RSJvY5IkxTJe_E5gP1-0DKQYaY5fusA-NRyH7k__ow8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1wc2Qv/eW91dHViZS10aHVt/Ym5haWwtZGVzaWdu/LWJ1c2luZXNzLXZp/ZGVvXzg5Mjk3MC0x/Nzk1LmpwZz9zZW10/PWFpc19oeWJyaWQm/dz03NDA",
-  //       description:
-  //         "I will design a responsive website that looks great on all devices.",
-  //       price: "$300",
-  //       deliveryTime: "5 days",
-  //     },
-
-  //   ],
-  // };
 
   const { profile } = useAuth();
-
-  // console.log(profile);
+  console.log("Profile Data:", profile);
 
   return (
     <>
       <div className="min-h-screen flex flex-col lg:flex-row gap-8 p-6 lg:px-20">
         <aside className="h-5/6 lg:w-1/3 lg:mx-20 border-1 border-gray-300 p-6 rounded-xl lg:sticky lg:top-40">
-          <div className="flex h-96 flex-col items-center">
+          <div className="flex h-96 flex-col items-center ">
             <img
               src={profile?.photo}
               alt="Profile"
-              className="w-34 h-34 rounded-full"
+              className="w-34 h-34 rounded-full object-cover"
             />
             <h2 className="mt-4 mb-1 text-3xl text-gray-700 font-semibold">
               {profile?.name}
@@ -105,7 +29,7 @@ const ProfilePage = () => {
               <p className="mt-2 font-medium">{profile?.location}</p>
               <div>
                 {profile?.languages?.map((exp, ind) => (
-                  <span className="font-medium">
+                  <span key={ind} className="font-medium">
                     {ind !== 0 && ", "}
                     {exp}
                   </span>
@@ -153,16 +77,6 @@ const ProfilePage = () => {
           </div>
 
           <div className="p-6 rounded-xl">
-            <h3 className="text-xl font-semibold mt-16 mb-2">Education</h3>
-            <ul className="list-disc list-inside text-gray-700">
-              {profile?.education.map((edu, idx) => (
-                <li key={idx}>
-                  <span className="font-semibold">{edu.degree}</span>{" "}
-                  <span className="text-gray-500">({edu.years})</span>
-                </li>
-              ))}
-            </ul>
-
             <h3 className="text-xl font-semibold mt-16 mb-2">Certifications</h3>
             <ul className="list-disc list-inside text-gray-700">
               {profile?.certifications.map((cert, idx) => (

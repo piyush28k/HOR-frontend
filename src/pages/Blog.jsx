@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from 'react';
-import ImageUploader from './ImageUpload';
 
 export const Blog = () => {
     const [file, setFile] = useState(null);
@@ -13,7 +12,7 @@ export const Blog = () => {
     <>
 
     <h1>Blog</h1>
-     <ImageUploader/>
+     
     </>
   )
 }

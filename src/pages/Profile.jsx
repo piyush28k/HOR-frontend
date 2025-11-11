@@ -1,13 +1,25 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useAuth } from "../context/AuthProvider";
-import EditProfile from "./EditProfile.jsx";
+import { useAuth } from "../context/AuthProvider.jsx";
+import EditProfile from "../components/EditProfile.jsx";
+import AddGig from "../components/AddGig.jsx";
 
 const ProfilePage = () => {
+  const { profile,user } = useAuth();
+  // console.log("Profile Data:", profile);
 
-  const { profile } = useAuth();
-  console.log("Profile Data:", profile);
+  const deleteGig = async (id) => {
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/profile/deletegig`,
+        { id,userId:user }
+      );
+      console.log("delete successfully", res);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -47,12 +59,10 @@ const ProfilePage = () => {
             <dialog id="my_modal_3" className="modal">
               <div className="modal-box">
                 <form method="dialog">
-                  {/* if there is a button in form, it will close the modal */}
                   <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                     ✕
                   </button>
                 </form>
-                <h3 className="h-full font-bold text-lg">Hello!</h3>
                 <EditProfile />
               </div>
             </dialog>
@@ -102,15 +112,42 @@ const ProfilePage = () => {
 
           {/* {profile?.giggs?.length > 0 && ( */}
           <div className="mt-6">
-            <h3 className="text-xl font-bold mb-4">Gigs</h3>
+            <div className="flex gap-3 items-center">
+              <h3 className="text-xl font-bold">Gigs</h3>
+              <button
+                className="bg-yellow-300 border border-gray-300 text-sm px-3 py-1 rounded-full font-bold"
+                onClick={() => document.getElementById("my_modal").showModal()}
+              >
+                +
+              </button>
+            </div>
+            <dialog id="my_modal" className="modal">
+              <div className="modal-box">
+                <form method="dialog">
+                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                    ✕
+                  </button>
+                </form>
+                <AddGig />
+              </div>
+            </dialog>
             <div className="flex overflow-x-auto gap-4 p-2 rounded-box bg-base-200 scrollbar-hide">
               {profile?.gigs.map((gig, idx) => (
                 <div
                   key={idx}
-                  className="w-72 bg-white rounded-xl shadow-md flex-shrink-0"
+                  className="w-72 bg-white rounded-xl shadow-md flex-shrink-0 relative"
                 >
+                  <div className="absolute p-2 flex gap-1.5 right-1">
+                    {/* <button className="bg-gray-300 px-2.5 py-1 rounded-xl cursor-pointer">Edit</button> */}
+                    <button
+                      onClick={()=> deleteGig(gig._id)}
+                      className="bg-gray-300 px-2.5 py-1 rounded-xl cursor-pointer"
+                    >
+                      Delete
+                    </button>
+                  </div>
                   <img
-                    src={gig.img}
+                    src={gig.photo}
                     alt={gig.title}
                     className="w-full h-40 object-cover rounded-t-xl"
                   />
@@ -123,7 +160,9 @@ const ProfilePage = () => {
                       <span className="font-bold text-primary">
                         {gig.price}
                       </span>
-                      <span className="text-gray-500">{gig.deliveryTime}</span>
+                      <span className="font-semibold">
+                        delivered in: {gig.deliveryDate} Days
+                      </span>
                     </div>
                   </div>
                 </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthProvider";
-import ImageUploader from "./ImageUpload"; // Assuming this is your styled uploader
+import ImageUploader from "../components/ImageUpload"; // Assuming this is your styled uploader
 
 const EditProfile = () => {
     const { user, profile } = useAuth();

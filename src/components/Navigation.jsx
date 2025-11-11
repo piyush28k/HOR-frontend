@@ -130,7 +130,7 @@ const Navigation = () => {
             Home
           </NavLink>
           <NavLink
-            to="Explore"
+            to="explore"
             onClick={isOpen ? toggleMenu : undefined}
             className={({ isActive }) =>
               `block py-2 pr-4 pl-3 ${

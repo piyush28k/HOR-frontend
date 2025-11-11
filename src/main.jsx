@@ -8,12 +8,14 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ReactDOM from "react-dom/client";
-import Home from "./components/Home.jsx";
-import Profile from "./components/Profile.jsx";
+import Home from "./pages/Home.jsx";
+import Profile from "./pages/Profile.jsx";
 import {AuthProvider} from "./context/AuthProvider.jsx";
 import Signin from "./components/Signin.jsx";
-import { Blog } from "./components/Blog.jsx";
+import Explore from "./pages/Explore.jsx";
+import { Blog } from "./pages/Blog.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import JobDetail from "./pages/UserDetail.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +24,8 @@ const router = createBrowserRouter(
       <Route path="Profile" element={<Profile />} />
       <Route path="signin" element={<Signin />} />
       <Route path="blog" element={<Blog />} />
-      {/* <Route path='Explore/job/:id' element={<JobDetail/>}/> */}
+      <Route path="explore" element={<Explore />} />
+      <Route path='explore/:id' element={<JobDetail/>}/>
     </Route>
   )
 );

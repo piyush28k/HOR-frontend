@@ -6,16 +6,25 @@ import EditProfile from "../components/EditProfile.jsx";
 import AddGig from "../components/AddGig.jsx";
 
 const ProfilePage = () => {
-  const { profile,user } = useAuth();
-  // console.log("Profile Data:", profile);
+  const { profile, user } = useAuth();
+  const [gigs, setGigs] = useState([]);
+
+  useEffect(() => {
+    if (profile?.gigs) {
+      setGigs(profile.gigs);
+    }
+  }, [profile]);
+
+  console.log("Profile Data:", gigs);
 
   const deleteGig = async (id) => {
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/profile/deletegig`,
-        { id,userId:user }
+        { id, userId: user }
       );
       console.log("delete successfully", res);
+      setGigs((prev) => prev.filter((gig) => gig._id !== id));
     } catch (error) {
       console.error(error);
     }
@@ -131,37 +140,38 @@ const ProfilePage = () => {
                 <AddGig />
               </div>
             </dialog>
+
             <div className="flex overflow-x-auto gap-4 p-2 rounded-box bg-base-200 scrollbar-hide">
-              {profile?.gigs.map((gig, idx) => (
+              {gigs?.map((gig, idx) => (
                 <div
                   key={idx}
-                  className="w-72 bg-white rounded-xl shadow-md flex-shrink-0 relative"
+                  className="w-72 group bg-white rounded-xl shadow-md flex-shrink-0 relative"
                 >
                   <div className="absolute p-2 flex gap-1.5 right-1">
                     {/* <button className="bg-gray-300 px-2.5 py-1 rounded-xl cursor-pointer">Edit</button> */}
                     <button
-                      onClick={()=> deleteGig(gig._id)}
-                      className="bg-gray-300 px-2.5 py-1 rounded-xl cursor-pointer"
+                      onClick={() => deleteGig(gig._id)}
+                      className="absolute cursor-pointer top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300"
                     >
                       Delete
                     </button>
                   </div>
                   <img
-                    src={gig.photo}
-                    alt={gig.title}
+                    src={gig?.photo || null}
+                    alt={gig?.title}
                     className="w-full h-40 object-cover rounded-t-xl"
                   />
                   <div className="p-3">
-                    <h4 className="text-md font-semibold">{gig.title}</h4>
+                    <h4 className="text-md font-semibold">{gig?.title}</h4>
                     <p className="text-gray-600 text-sm mt-1 line-clamp-2">
-                      {gig.description}
+                      {gig?.description}
                     </p>
                     <div className="mt-2 flex justify-between items-center text-sm">
                       <span className="font-bold text-primary">
-                        {gig.price}
+                        {gig?.price}
                       </span>
                       <span className="font-semibold">
-                        delivered in: {gig.deliveryDate} Days
+                        delivered in: {gig?.deliveryDate} Days
                       </span>
                     </div>
                   </div>

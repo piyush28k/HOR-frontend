@@ -32,7 +32,7 @@ function Explore() {
     const result = datas.filter((data) => {
       const res = service ? data.title?.toLowerCase().includes(service.toLowerCase()) : true;
       const loc = location ? data.location?.toLowerCase().includes(location.toLowerCase()) : true;
-      // console.log(res,loc)
+      console.log("res: "+ res,"loc: "+ loc)
       return res && loc;
     });
     setRes(result);
@@ -93,10 +93,10 @@ function Explore() {
           </button>
         </div>
 
-        {/* --- 2. Job Cards Section (White & Yellow Theme) --- */}
+        {/* Job Cards Section */}
         <div className="max-w-7xl mx-auto p-8 sm:p-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* We map over the dummy data to create cards */}
+            {/*map over the data to create cards */}
             {res.length === 0 && (
               <div className="text-2xl">No Freelancer Found!</div>
             )}
@@ -107,7 +107,6 @@ function Explore() {
                            hover:shadow-xl hover:border-amber-400 transition-all duration-300
                            flex flex-col p-6"
               >
-                {/* Card Header */}
                 <div className="flex items-center gap-4">
                   <img
                     className="h-16 w-16 rounded-full object-cover border-2 border-amber-400"
@@ -124,13 +123,11 @@ function Explore() {
                   </div>
                 </div>
 
-                {/* Card Description (flex-grow pushes button to bottom) */}
                 <p className="mt-5 text-gray-700 text-sm leading-relaxed flex-grow">
                   {job.bio ||
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum architecto accusantium natus, numquam ratione illo."}
                 </p>
 
-                {/* Card Footer Button */}
                 <button onClick={()=> (navigate(`/explore/${job.userId}`))}
                   className="bg-amber-400 hover:bg-amber-500 mt-5 w-full text-gray-900 font-semibold py-2 rounded-lg
                                    transition-all duration-200 cursor-pointer"

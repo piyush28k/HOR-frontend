@@ -16,7 +16,7 @@ function AddGig() {
     deliveryDate: "",
   });
 
-  console.log(data);
+  // console.log(data);
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -35,6 +35,7 @@ function AddGig() {
       );
       console.log(res);
       console.log("gig add successful")
+      window.location.reload()
     } catch (error) {
       console.error(error);
     }
